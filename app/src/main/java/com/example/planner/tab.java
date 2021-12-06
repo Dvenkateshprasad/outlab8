@@ -3,6 +3,8 @@ package com.example.planner;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -11,6 +13,8 @@ import android.view.ViewGroup;
 
 import com.example.planner.ui.main.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +25,8 @@ public class tab extends Fragment {
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
     public  SectionsPagerAdapter sectionsPagerAdapter;
+    //TODO: REMOVE THESE THINGS IF NOT WORKED PROPERLY
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -71,6 +77,7 @@ public class tab extends Fragment {
        viewPager = v.findViewById(R.id.view_pager);
        viewPager.setAdapter(new SectionsPagerAdapter(getContext(),getChildFragmentManager()));
        tabLayout.setupWithViewPager(viewPager);
+
        return v;
     }
 }

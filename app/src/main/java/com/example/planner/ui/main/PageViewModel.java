@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class PageViewModel extends ViewModel {
 
@@ -15,7 +16,6 @@ public class PageViewModel extends ViewModel {
             return "Hello world from section: " + input;
         }
     });
-
     public void setIndex(int index) {
         mIndex.setValue(index);
     }

@@ -5,7 +5,7 @@ public class design {
     private String date;
     private String description;
     private String time;
-    design(String title,String date,String description,String time){
+    public design(String title, String date, String description, String time){
         this.title=title;
         this.date=date;
         this.description=description;
