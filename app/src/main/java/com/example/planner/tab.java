@@ -69,7 +69,7 @@ public class tab extends Fragment {
         View v = inflater.inflate(R.layout.fragment_tab, container, false);
        tabLayout=v.findViewById(R.id.tablayout);
        viewPager = v.findViewById(R.id.view_pager);
-       viewPager.setAdapter(new SectionsPagerAdapter(getParentFragment().getContext(),getChildFragmentManager()));
+       viewPager.setAdapter(new SectionsPagerAdapter(getContext(),getChildFragmentManager()));
        tabLayout.setupWithViewPager(viewPager);
        return v;
     }

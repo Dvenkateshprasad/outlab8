@@ -4,8 +4,10 @@
     <string name="navigation_open">Open Navigation Drawer</string>
     <string name="navigation_close">Close Navigation Drawer</string>
     <string name="title_activity_main2">MainActivity2</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Study Plans</string>
+    <string name="tab_text_2">Assignments</string>
+    <string name="tab_text_3">Exams</string>
+    <string name="tab_text_4">Lectures</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tabbed">tabbed</string>
