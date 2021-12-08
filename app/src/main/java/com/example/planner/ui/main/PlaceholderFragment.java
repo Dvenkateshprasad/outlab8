@@ -1,5 +1,6 @@
 package com.example.planner.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +12,20 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.planner.Adapter;
+import com.example.planner.Add_Event;
+import com.example.planner.Add_event_2;
 import com.example.planner.DatabaseHelper;
+import com.example.planner.MainActivity;
 import com.example.planner.R;
 import com.example.planner.design;
+import com.example.planner.tab;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -72,8 +78,8 @@ public class PlaceholderFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getContext(), Add_event_2.class);
+                startActivity(intent);
             }
         });
         adapter.setOnItemClickListener(new Adapter.OnItemClickListener() {

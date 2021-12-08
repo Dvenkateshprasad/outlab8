@@ -10,9 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Planner">
         <activity
+            android:name=".Add_event_2"
+            android:exported="false"
+            android:label="@string/title_activity_add_event2"
+            android:theme="@style/Theme.Planner.NoActionBar" />
+        <activity
             android:name=".tabbed"
             android:label="@string/title_activity_tabbed"
-            android:theme="@style/Theme.Planner.NoActionBar"></activity>
+            android:theme="@style/Theme.Planner.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.Planner.NoActionBar">
