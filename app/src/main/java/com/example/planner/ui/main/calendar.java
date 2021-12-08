@@ -13,11 +13,9 @@ import android.widget.TextView;
 
 import com.example.planner.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link calendar#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.Calendar;
+
+
 public class calendar extends Fragment {
 
 
@@ -26,11 +24,16 @@ public class calendar extends Fragment {
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+    public String modify(int day,int month, int year){
+        String daym = day >= 10 ? String.valueOf(day) : "0" + day;
+        String mon = (month + 1) >= 10 ? String.valueOf(month + 1) : "0" + (month + 1);
+        String date = daym + "-" + mon + "-" + year;
+        return date;
     }
 
     @Override
@@ -44,14 +47,15 @@ public class calendar extends Fragment {
             TextView lecture_number = v.findViewById(R.id.lectures_number);
             TextView date_text = v.findViewById(R.id.date_text);
             CalendarView calendarView = v.findViewById(R.id.calendar);
+            Calendar c = Calendar.getInstance();
+            String s = modify(c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH),c.get(Calendar.YEAR));
+            date_text.setText(s);
             calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                 @Override
                 public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                    String day = dayOfMonth >= 10 ? String.valueOf(dayOfMonth) : "0" + dayOfMonth;
-                    String mon = (month + 1) >= 10 ? String.valueOf(month + 1) : "0" + (month + 1);
-                    String date = day + "-" + mon + "-" + year;
-
+                    String date = modify(dayOfMonth,month,year);
                     date_text.setText(date);
+
                 }
             });
 
