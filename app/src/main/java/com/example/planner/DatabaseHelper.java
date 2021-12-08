@@ -37,6 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean addOne(design item,int index){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
+        cv.put("ID",item.getItemid());
         cv.put(TITLE,item.getTitle());
         cv.put(DATE,item.getDate());
         cv.put(TIME,item.getTime());
@@ -62,6 +63,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else{
             return true;
         }
+    }
+    public boolean DeleteOne(design item){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString  = "DELETE FROM "+TABLE_NAME+" WHERE ID = "+item.getItemid();
+        Cursor cursor = db.rawQuery(queryString,null);
+        db.close();
+        if(cursor.moveToFirst()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public int maxId(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT MAX(ID) FROM "+TABLE_NAME;
+        Cursor cursor = db.rawQuery(queryString,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+            int id = cursor.getInt(0);
+            return id+1;
+        }
+        return 1;
     }
     public List<design> data(int index){
         List<design>arrayList = new ArrayList<>();

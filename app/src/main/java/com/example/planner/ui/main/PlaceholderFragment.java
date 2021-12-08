@@ -33,6 +33,7 @@ public class PlaceholderFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
     private PageViewModel pageViewModel;
+    DatabaseHelper databaseHelper;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     List<design> userList;
@@ -72,26 +73,26 @@ public class PlaceholderFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userList.add(new design(5,"f","ffff","fffsfd","lmfao"));
+                int nextid=databaseHelper.maxId();
+                design d = new design(nextid,"f","ffff","fffsfd","lmfao");
+                databaseHelper.addOne(d,j);
+                userList.add(d);
                 adapter.notifyItemInserted(userList.size()-1);
             }
         });
         adapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
             @Override
             public void OnDeleteClick(int position) {
+                databaseHelper = new DatabaseHelper(getContext());
+                databaseHelper.DeleteOne(userList.get(position));
                 removeItem(position);
             }
         });
 
     }
     private void initData(View v,int j){
-        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
-
-        userList = new ArrayList<>();
-        userList.add(new design(1,"lol","f","lmfao","hello"));
-        userList.add(new design(2,"lol","f","lmfao","hello"));
-        userList.add(new design(3,"lol","f","lmfao","hello"));
-        userList.add(new design(4,"lol","f","lmfao","hello"));
+        databaseHelper = new DatabaseHelper(getContext());
+        userList = databaseHelper.data(j);
     }
 
     public void removeItem(int position){
