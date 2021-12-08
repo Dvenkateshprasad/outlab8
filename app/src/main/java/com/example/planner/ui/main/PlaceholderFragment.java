@@ -84,7 +84,6 @@ public class PlaceholderFragment extends Fragment {
             @Override
             public void OnDeleteClick(int position) {
                 databaseHelper = new DatabaseHelper(getContext());
-                databaseHelper.DeleteOne(userList.get(position));
                 removeItem(position);
             }
         });
@@ -96,6 +95,7 @@ public class PlaceholderFragment extends Fragment {
     }
 
     public void removeItem(int position){
+        databaseHelper.DeleteOne(userList.get(position));
         userList.remove(position);
         adapter.notifyItemRemoved(position);
     }

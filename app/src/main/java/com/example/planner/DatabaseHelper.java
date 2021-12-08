@@ -68,7 +68,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString  = "DELETE FROM "+TABLE_NAME+" WHERE ID = "+item.getItemid();
         Cursor cursor = db.rawQuery(queryString,null);
-        db.close();
         if(cursor.moveToFirst()){
             return true;
         }
