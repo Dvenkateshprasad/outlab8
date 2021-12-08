@@ -1,8 +1,11 @@
 package com.example.planner;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,7 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+    Context context;
     List<design> userList;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+        void OnDeleteClick(int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
     public Adapter(List<design> userList){
 
         this.userList=userList;
@@ -39,10 +51,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView itemtitle;
-        private TextView itemdate;
-        private TextView itemtime;
-        private TextView itemdescription;
+        public TextView itemtitle;
+        public TextView itemdate;
+        public TextView itemtime;
+        public TextView itemdescription;
+        public ImageView deleteimg;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -50,6 +63,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             itemdate=itemView.findViewById(R.id.item_date);
             itemtitle=itemView.findViewById(R.id.item_title);
             itemdescription=itemView.findViewById(R.id.item_description);
+            deleteimg = itemView.findViewById(R.id.item_delete);
+            deleteimg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListener!=null){
+                        int position = getAbsoluteAdapterPosition();
+                        if(position!=RecyclerView.NO_POSITION){
+                            mListener.OnDeleteClick(position);
+                        }
+
+                    }
+                }
+            });
         }
 
         public void setData(String title, String date, String time, String description) {

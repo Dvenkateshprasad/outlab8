@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,8 +17,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.planner.Adapter;
+import com.example.planner.DatabaseHelper;
 import com.example.planner.R;
 import com.example.planner.design;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +32,6 @@ import java.util.List;
 public class PlaceholderFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-
     private PageViewModel pageViewModel;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
@@ -65,6 +68,21 @@ public class PlaceholderFragment extends Fragment {
         adapter = new Adapter(userList);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        FloatingActionButton fab = v.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+        adapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
+            @Override
+            public void OnDeleteClick(int position) {
+                removeItem(position);
+            }
+        });
+
     }
     private void initData(View v){
         userList = new ArrayList<>();
@@ -80,21 +98,18 @@ public class PlaceholderFragment extends Fragment {
 
     }
 
-
+    public void removeItem(int position){
+        userList.remove(position);
+        adapter.notifyItemRemoved(position);
+    }
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-//        final TextView textView = root.findViewById(R.id.se);
-//        pageViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-////                textView.setText(s);
-//            }
-//        });
         initData(root);
         initRecycerView(root);
+
         return root;
     }
 }

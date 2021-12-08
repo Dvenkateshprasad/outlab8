@@ -7,9 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-
-    public DatabaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    private static final String dbname ="STUDY_TABLE";
+    public DatabaseHelper(@Nullable Context context) {
+        super(context, dbname, null, 1);
     }
 
     @Override
