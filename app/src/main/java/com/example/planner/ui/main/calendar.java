@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
+import com.example.planner.DatabaseHelper;
 import com.example.planner.R;
 
 import java.util.Calendar;
@@ -55,7 +56,15 @@ public class calendar extends Fragment {
                 public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                     String date = modify(dayOfMonth,month,year);
                     date_text.setText(date);
-
+                    DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+                    String lecture = String.valueOf(databaseHelper.getNumEvents("lectures", date));
+                    String exam = String.valueOf(databaseHelper.getNumEvents("exams", date));
+                    String assignment = String.valueOf(databaseHelper.getNumEvents("assignments",date));
+                    String study = String.valueOf(databaseHelper.getNumEvents("study",date));
+                    lecture_number.setText(lecture);
+                    exams_number.setText(exam);
+                    assign_number.setText(assignment);
+                    study_number.setText(study);
                 }
             });
 

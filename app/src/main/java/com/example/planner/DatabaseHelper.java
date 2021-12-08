@@ -127,4 +127,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return arrayList;
     }
+    public int getNumEvents(String Event_Type, String Event_Date){
+        int x=0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM "+TABLE_NAME+" WHERE "+TYPE+" = '" + Event_Type+"' AND " +DATE+" = '" +Event_Date+"' ";
+        Cursor cursor = db.rawQuery(queryString, null);
+        if(cursor.moveToFirst()){
+            do{
+                x++;
+            }while(cursor.moveToNext());
+        }
+        else{
+            //nothing here
+        }
+        cursor.close();
+        db.close();
+        return x;
+    }
 }
