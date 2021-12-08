@@ -60,7 +60,7 @@ public class PlaceholderFragment extends Fragment {
 
     }
 
-    private void initRecycerView(View v) {
+    private void initRecyclerView(View v,int j) {
         recyclerView = v.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -72,8 +72,8 @@ public class PlaceholderFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                userList.add(new design(5,"f","ffff","fffsfd","lmfao"));
+                adapter.notifyItemInserted(userList.size()-1);
             }
         });
         adapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
@@ -84,18 +84,14 @@ public class PlaceholderFragment extends Fragment {
         });
 
     }
-    private void initData(View v){
-        userList = new ArrayList<>();
-        userList.add(new design("lol","f","lmfao","hello"));
-        userList.add(new design("lol","f","lmfao","hello"));
-        userList.add(new design("lol","f","lmfao","hello"));
-        userList.add(new design("lol","f","lmfao","hello"));
-        userList.add(new design("lol","f","lmfao","hello"));
-        userList.add(new design("lol","f","lmfao","hello"));
-        userList.add(new design("lol","f","lmfao","hello"));
-        userList.add(new design("lol","f","lmfao","hello"));
-        userList.add(new design("lol","f","lmfao","hello"));
+    private void initData(View v,int j){
+        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
 
+        userList = new ArrayList<>();
+        userList.add(new design(1,"lol","f","lmfao","hello"));
+        userList.add(new design(2,"lol","f","lmfao","hello"));
+        userList.add(new design(3,"lol","f","lmfao","hello"));
+        userList.add(new design(4,"lol","f","lmfao","hello"));
     }
 
     public void removeItem(int position){
@@ -107,9 +103,10 @@ public class PlaceholderFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        initData(root);
-        initRecycerView(root);
 
+        int i = getArguments().getInt(ARG_SECTION_NUMBER);
+        initData(root,i);
+        initRecyclerView(root,i);
         return root;
     }
 }

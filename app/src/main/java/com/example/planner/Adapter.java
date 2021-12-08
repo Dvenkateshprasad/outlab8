@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
@@ -56,6 +58,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         public TextView itemtime;
         public TextView itemdescription;
         public ImageView deleteimg;
+        public FloatingActionButton fab;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +79,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                     }
                 }
             });
+
         }
 
         public void setData(String title, String date, String time, String description) {
