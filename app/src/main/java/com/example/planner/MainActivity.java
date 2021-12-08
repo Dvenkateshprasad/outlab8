@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.planner.ui.main.calendar;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_calendar:
                 //TODO:Remove this tab fragment and create a calendar module and add the activity
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new tab()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new calendar()).commit();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
