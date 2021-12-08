@@ -70,6 +70,7 @@ public class Add_event_2 extends AppCompatActivity {
                 DatabaseHelper databaseHelper = new DatabaseHelper(Add_event_2.this);
                 boolean success = databaseHelper.addOne(Design);
                 Toast.makeText(Add_event_2.this, "Success="+success, Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
